@@ -11,4 +11,4 @@ install:
 
 script:
   - cd jmad
-  - ./manage.py test
+  - ./manage.py test solos
