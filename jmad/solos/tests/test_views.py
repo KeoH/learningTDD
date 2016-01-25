@@ -50,7 +50,7 @@ class IntexViewTestCase(SoloBaseTestCase):
         self.assertEqual(len(solos), 1)
         self.assertEqual(solos[0].artist, 'Rich')
 
-class SoloViewTestCase(TestCase):
+class SoloViewTestCase(SoloBaseTestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
@@ -64,7 +64,7 @@ class SoloViewTestCase(TestCase):
 
         response = SoloDetailView.as_view()(
             request,
-            self.drum_solo.pk
+            pk=self.drum_solo.pk
         )
 
         self.assertEqual(response.status_code, 200)
@@ -72,5 +72,5 @@ class SoloViewTestCase(TestCase):
             response.context_data['solo'].artist,
             'Rich'
         )
-        with self.assertTemplateUsed('solo/solo_detail.html'):
+        with self.assertTemplateUsed('solos/solo_detail.html'):
             response.render()
