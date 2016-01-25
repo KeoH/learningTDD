@@ -73,7 +73,6 @@ class StudentTestCase(LiveServerTestCase):
             '.jmad-search-result')
         self.assertEqual(len(second_search_results), 2)
 
-
         self.fail('Incomplete Test')
         #He clicks on a search result.
 
