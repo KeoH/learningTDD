@@ -4,20 +4,27 @@ from django.db.models.query import QuerySet
 from solos.models import Solo
 from solos.views import index, SoloDetailView
 
-class IntexViewTestCase(TestCase):
+class SoloBaseTestCase(TestCase):
 
     def setUp(self):
         self.factory = RequestFactory()
-        self.drum_solo = Solo.objects.create(
+
+    @classmethod
+    def setUpClass(cls):
+        super(SoloBaseTestCase, cls).setUpClass()
+        cls.drum_solo = Solo.objects.create(
             instrument = 'drums',
             artist = 'Rich',
             track = 'Bugle Call Rag'
         )
-        self.bass_solo = Solo.objects.create(
+        cls.bass_solo = Solo.objects.create(
             instrument = 'saxophone',
             artist = 'Coltrane',
             track = 'Mr. PC'
         )
+
+class IntexViewTestCase(SoloBaseTestCase):
+
     def test_index_view_basic(self):
         """
         Test that index view returns a 200 response
