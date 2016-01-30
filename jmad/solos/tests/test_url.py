@@ -18,11 +18,11 @@ class SolosURLsTestCase(TestCase):
         Test that the URL for SoloDetail resolves to the
         correct view function
         """
-        solo_detail = resolve('/solos/1/')
-
-        self.assertEqual(
-            solo_detail.func.__name__,
-            'SoloDetailView'
+        solo_detail = resolve(
+            '/recordings/kind-of-blue/all-blues/cannonball-adderley/'
         )
 
-        self.assertEqual(solo_detail.kwargs['pk'], '1')
+        self.assertEqual(solo_detail.func.__name__, 'SoloDetailView')
+        self.assertEqual(solo_detail.kwargs['album'], 'kind-of-blue')
+        self.assertEqual(solo_detail.kwargs['track'], 'all-blues')
+        self.assertEqual(solo_detail.kwargs['artist'], 'cannonball-adderley')
